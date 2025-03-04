@@ -228,9 +228,9 @@ class MainApp(QtWidgets.QMainWindow, Ui_MainBox):
         if not student_last_name.isalpha():
             self.add_error()
             return
-        
-        #CHECK FOR EXISTING INPUTS
-        if any(student[0] == student_id for student in self.students):
+
+        # Check if the new student ID matches with any other student ID in the table
+        if any(student[0] == student_id for i, student in enumerate(self.students) if i != row):
             self.input_exists()
             return
 
@@ -783,28 +783,28 @@ class MainApp(QtWidgets.QMainWindow, Ui_MainBox):
         message_box.exec_()
 
     def search_succesful(self):
-            message_box = QtWidgets.QMessageBox(self)
-            message_box.setWindowTitle('Search Successful')
-            message_box.setText('An item is found')
-            message_box.setIcon(QtWidgets.QMessageBox.Information)
-            message_box.setStyleSheet("QLabel { color : white; } QPushButton { color: white; }")
-            message_box.exec_()
+        message_box = QtWidgets.QMessageBox(self)
+        message_box.setWindowTitle('Search Successful')
+        message_box.setText('An item is found')
+        message_box.setIcon(QtWidgets.QMessageBox.Information)
+        message_box.setStyleSheet("QLabel { color : white; } QPushButton { color: white; }")
+        message_box.exec_()
 
     def search_error(self):
-            message_box = QtWidgets.QMessageBox(self)
-            message_box.setWindowTitle('Search Error')
-            message_box.setText('No item is found')
-            message_box.setIcon(QtWidgets.QMessageBox.Warning)
-            message_box.setStyleSheet("QLabel { color : white; } QPushButton { color: white; }")
-            message_box.exec_()
+        message_box = QtWidgets.QMessageBox(self)
+        message_box.setWindowTitle('Search Error')
+        message_box.setText('No item is found')
+        message_box.setIcon(QtWidgets.QMessageBox.Warning)
+        message_box.setStyleSheet("QLabel { color : white; } QPushButton { color: white; }")
+        message_box.exec_()
 
     def selection_error(self):
-            message_box = QtWidgets.QMessageBox(self)
-            message_box.setWindowTitle('Selection Error')
-            message_box.setText('Please select a row to edit')
-            message_box.setIcon(QtWidgets.QMessageBox.Warning)
-            message_box.setStyleSheet("QLabel { color : white; } QPushButton { color: white; }")
-            message_box.exec_()
+        message_box = QtWidgets.QMessageBox(self)
+        message_box.setWindowTitle('Selection Error')
+        message_box.setText('Please select a row to edit')
+        message_box.setIcon(QtWidgets.QMessageBox.Warning)
+        message_box.setStyleSheet("QLabel { color : white; } QPushButton { color: white; }")
+        message_box.exec_()
     
     def update_succesful(self):
         message_box = QtWidgets.QMessageBox(self)
